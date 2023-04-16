@@ -1,3 +1,12 @@
+# Any custom items go here
+*.3gp
+*.flv
+*.mkv
+*.mp4
+*.mpg
+*.mov
+*.ogx
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
