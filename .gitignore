@@ -6,7 +6,7 @@
 *.mpg
 *.mov
 *.ogx
-/flask_conv
+/flask_env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
