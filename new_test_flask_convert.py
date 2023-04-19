@@ -1,4 +1,4 @@
-
+#!/bin/python3.9
 """Initial POC for Flask front-end"""
 
 import os
@@ -26,6 +26,7 @@ def convert():
 
     file_input = request.files["file_input"]
     file_output = request.form.get("file_output", "converted_video.mp4")
+    file_output_path = request.form.get("file_output_path", "./")
 
     # check that the output file has a .mp4 extension
     if not file_output.lower().endswith(".mp4"):
@@ -37,15 +38,10 @@ def convert():
 
         # convert the video
         ff = FFmpeg()
-        options_string = f'-i {file_input.filename} -q:v 0 {file_output}'
+        options_string = f'-i {file_input.filename} -q:v 0 {os.path.join(file_output_path, file_output)}'
         ff.options(options_string.split())
 
-        # ff.convert(file_input.filename, file_output)
-
-        # delete the input file
-        # os.remove(file_input.filename)
-
-        message = f"File {file_input.filename} converted to {file_output}"
+        message = f"File {file_input.filename} converted to {os.path.join(file_output_path, file_output)}"
         return render_template("result.html", message=message)
     else:
         return "No file selected"
