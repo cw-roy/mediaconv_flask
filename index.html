@@ -6,10 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Conversion</title>
+    <meta name="author" content="Curtis Roy">
 </head>
 
 <body>
-    <h1>Video Conversion</h1>
+    <h1>Video Conversion - TEST version</h1>
+    <h4>NOTE:  Select your input files from a separate directory.</h4>
+
+    <ol>
+        <li>Select an input file from a directory on your computer.</li>
+        <li>A copy will be made in the directory where this Python script resides.  (That working copy is deleted upon completion.)</li>
+        <li>Then specify an output file. It will be saved in the same directory as the script.</li>
+    </ol>
+    <ul>
+        <li>WARNING: be careful with naming the output file.</li>
+        <li>In this test version, if a file of that name already exists, the conversion
+            will not occur and an error webpage will be displayed.</li>
+        <li>At this time, only conversion to .mp4 format is supported.</li>
+        <li>Progress will be indicated by the 'loading' animation in the browser tab.</li>
+        <li>Upon success, you will be redirected back to the input page after 5 seconds to do your next conversion.</li>
+    </ul>
     <form action="/convert" method="POST" enctype="multipart/form-data">
         <label for="file_input">Input file:</label>
         <input type="file" name="file_input" id="file_input" required><br><br>

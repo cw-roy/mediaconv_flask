@@ -1,6 +1,7 @@
 """Initial POC for Flask front-end"""
 
 import os
+import time
 
 from flask import Flask, render_template, request
 
@@ -14,13 +15,13 @@ def index():
     """Sets up index.html"""
     return render_template("index.html")
 
-
 @app.route("/convert", methods=["POST"])
+
 def convert():
     """Input file, output file, initiate conversion"""
 
     # check that a file was selected
-    if 'file_input' not in request.files:
+    if "file_input" not in request.files:
         return "No file selected"
 
     file_input = request.files["file_input"]
@@ -36,16 +37,14 @@ def convert():
 
         # convert the video
         ff = FFmpeg()
-        options_string = f'-i {file_input.filename} -q:v 0 {file_output}'
+        options_string = f"-i {file_input.filename} -q:v 0 {file_output}"
         ff.options(options_string.split())
 
-        # ff.convert(file_input.filename, file_output)
-
-        # delete the input file
-        # os.remove(file_input.filename)
+        # delete the working copy of the input file
+        os.remove(file_input.filename)
 
         message = f"File {file_input.filename} converted to {file_output}"
-        return render_template("result.html", message=message)
+        return render_template("result.html", message=message, redirect_url="/")
     else:
         return "No file selected"
 
