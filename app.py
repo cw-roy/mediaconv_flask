@@ -1,10 +1,9 @@
+#!/usr/bin/env python3
+
 """Initial POC for Flask front-end"""
 
 import os
-import time
-
 from flask import Flask, render_template, request
-
 from pyffmpeg import FFmpeg
 
 app = Flask(__name__, template_folder=".")
@@ -15,8 +14,8 @@ def index():
     """Sets up index.html"""
     return render_template("index.html")
 
-@app.route("/convert", methods=["POST"])
 
+@app.route("/convert", methods=["POST"])
 def convert():
     """Input file, output file, initiate conversion"""
 
